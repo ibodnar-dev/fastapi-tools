@@ -3,9 +3,10 @@ class Node:
     """
     A directory or file in the tree representation.
     """
-    def __init__(self, name: str, parent: 'Node'):
+    def __init__(self, name: str, parent: 'Node', is_directory=False):
         self.name = name
         self.parent = parent
+        self.is_directory = is_directory
 
     @property
     def is_root(self) -> bool:
@@ -39,7 +40,7 @@ def _build_tree(blueprint: dict) -> list[Node]:
     global _current_parent
 
     for name, children in blueprint.items():
-        current = Node(name=name, parent=_current_parent)
+        current = Node(name=name, parent=_current_parent, is_directory=True)
         _nodes.append(current)
         _current_parent = current
         for child in children:
