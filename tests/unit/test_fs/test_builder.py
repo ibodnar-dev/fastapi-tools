@@ -46,3 +46,7 @@ class TestNode:
         node = Node(name=current_name, parent=Mock(spec=Node, path=parent_name))
 
         assert repr(node) == f'{parent_name}/{current_name}'
+
+
+class TestBuildTree:
+    pass
