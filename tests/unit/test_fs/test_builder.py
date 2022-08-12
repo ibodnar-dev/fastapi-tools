@@ -22,3 +22,15 @@ class TestNode:
         node = Node(name='name', parent=parent)
 
         assert node.is_root == is_root_result
+
+    @pytest.mark.parametrize(
+        'parent, name, path_result',
+        [
+            (Mock(spec=Node, name='parent', path='parent'), 'current', 'parent/current'),
+            (None, 'current', 'current')
+        ]
+    )
+    def test_path_returns_correct_result(self, parent, name, path_result):
+        node = Node(name=name, parent=parent)
+
+        assert node.path == path_result
