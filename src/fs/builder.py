@@ -3,7 +3,7 @@ class Node:
     """
     A directory or file in the tree representation.
     """
-    def __init__(self, name: str, parent: 'Node', is_directory=False):
+    def __init__(self, name: str, parent: 'Node', is_directory: bool = False):
         self.name = name
         self.parent = parent
         self.is_directory = is_directory
