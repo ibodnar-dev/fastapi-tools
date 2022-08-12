@@ -34,3 +34,11 @@ class TestNode:
         node = Node(name=name, parent=parent)
 
         assert node.path == path_result
+
+    def test_repr_returns_path(self):
+        current_name = 'current_name'
+        parent_name = 'parent_name'
+
+        node = Node(name=current_name, parent=Mock(spec=Node, path=parent_name))
+
+        assert repr(node) == f'{parent_name}/{current_name}'
