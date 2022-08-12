@@ -15,7 +15,11 @@ class TestNode:
 
         assert node.name == name
         assert node.parent == parent
-        assert node.is_directory == is_directory
+        assert node.is_directory is is_directory
+
+        node = Node(name=name, parent=parent)
+
+        assert node.is_directory is False
 
     @pytest.mark.parametrize('parent, is_root_result', [(Mock(spec=Node), False), (None, True)])
     def test_is_root_returns_correct_result(self, parent, is_root_result):
