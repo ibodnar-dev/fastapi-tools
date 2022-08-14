@@ -27,6 +27,15 @@ class Node:
     def __repr__(self) -> str:
         return self.path
 
+    def __eq__(self, other: 'Node') -> bool:
+        return self.path == other.path
+
+    def __ne__(self, other: 'Node') -> bool:
+        return not self.__eq__(other)
+
+    def __hash__(self) -> int:
+        return hash(self.path)
+
 
 _nodes: list[Node] = []
 _current_parent: Node | None = None
