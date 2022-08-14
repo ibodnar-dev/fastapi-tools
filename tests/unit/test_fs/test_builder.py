@@ -2,7 +2,7 @@ from unittest.mock import Mock
 
 import pytest
 
-from src.fs.builder import Node
+from src.fs.builder import Node, build_tree
 
 
 class TestNode:
@@ -49,4 +49,12 @@ class TestNode:
 
 
 class TestBuildTree:
-    pass
+    def test_returns_correct_tree(self, blueprint_and_tree_example_one):
+        blueprint = blueprint_and_tree_example_one.blueprint
+        tree = blueprint_and_tree_example_one.tree
+
+        result = build_tree(blueprint=blueprint)
+
+        # All the resulting tuples from zip(tree, result) should have
+        # len == 1 when converted into a set if its Node objects have the same path
+        assert all([(len(set(pair)) == 1) for pair in zip(tree, result)])
