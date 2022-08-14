@@ -5,8 +5,8 @@ from src.fs.builder import Node
 from src.fs.writer import tree_writer
 
 
+@patch.object(writer_module, 'Path')
 class TestTreeWriter:
-    @patch.object(writer_module, 'Path')
     def test_creates_path_object_from_path_attribute(self, path_mock: MagicMock, nodes_list: list[Node]):
         directory, file = nodes_list
 
