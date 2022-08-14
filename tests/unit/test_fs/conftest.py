@@ -33,3 +33,8 @@ def blueprint_and_tree_example_one() -> examples_result:
     ]
 
     return examples_result(blueprint=blueprint, tree=tree)
+
+
+@pytest.fixture
+def nodes_list() -> list[Node]:
+    return [Node('directory', is_directory=True), Node('file', is_directory=False)]
