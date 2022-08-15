@@ -11,3 +11,7 @@ class BaseFSError(Exception):
             f'- [original exception]: {type(self.original_exception).__name__}'
             f' - [original message]: {self.original_exception.args[1]}'
         )
+
+
+class NodeExistsError(BaseFSError):
+    pass
