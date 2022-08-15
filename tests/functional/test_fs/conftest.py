@@ -1,6 +1,15 @@
+import os
+from pathlib import Path
+
 import pytest
 
 from src.fs.builder import Node
+
+
+@pytest.fixture
+def setup_path(tmp_path: Path) -> Path:
+    os.chdir(tmp_path)
+    yield tmp_path
 
 
 @pytest.fixture
