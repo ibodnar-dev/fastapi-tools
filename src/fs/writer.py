@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from src.fs.builder import Node
-from src.fs.exceptions import NodeExistsError
+from src.fs.exceptions import NodeExistsError, BasePathDoesNotExist
 
 
 def write_tree(tree: list[Node]):
@@ -14,3 +14,17 @@ def write_tree(tree: list[Node]):
                 path_object.touch()
         except FileExistsError as e:
             raise NodeExistsError(e)
+
+
+def _build_path(base_path: str | None = None, *, node_path: str) -> Path:
+    node_path_object = Path(node_path)
+
+    if not base_path:
+        return node_path_object
+
+    base_path_object = Path(base_path)
+
+    if not base_path_object.exists():
+        raise BasePathDoesNotExist(message=f'directory {base_path} does not exist')
+
+    return base_path_object / node_path_object
