@@ -4,7 +4,7 @@ from src.fs.builder import Node
 from src.fs.exceptions import NodeExistsError
 
 
-def tree_writer(tree: list[Node]):
+def write_tree(tree: list[Node]):
     for node in tree:
         path_object = Path(node.path)
         try:

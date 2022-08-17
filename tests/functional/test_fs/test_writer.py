@@ -4,7 +4,7 @@ import pytest
 
 from src.fs.builder import Node
 from src.fs.exceptions import NodeExistsError
-from src.fs.writer import tree_writer
+from src.fs.writer import write_tree
 
 
 class TestWriter:
@@ -12,7 +12,7 @@ class TestWriter:
         tmp_path = setup_path
         base, directory_one = simple_tree
 
-        tree_writer(simple_tree)
+        write_tree(simple_tree)
 
         assert (tmp_path / base.name).exists()
         assert (tmp_path / base.name / directory_one.name).exists()
@@ -26,6 +26,6 @@ class TestWriter:
         Path(tmp_path / base.name).mkdir()
 
         with pytest.raises(NodeExistsError) as exc_info:
-            tree_writer(simple_tree)
+            write_tree(simple_tree)
 
         assert 'FileExistsError' in str(exc_info.value)
