@@ -17,3 +17,7 @@ class BaseFSError(Exception):
 
 class NodeExistsError(BaseFSError):
     pass
+
+
+class BasePathDoesNotExist(BaseFSError):
+    pass
