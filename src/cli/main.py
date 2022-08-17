@@ -1,18 +1,10 @@
 from typer import Typer
 
-from src.fs import create_app
+import src.cli.new as new
 
 app = Typer()
 
-
-@app.command()
-def new(app_name: str):
-    create_app(app_name)
-
-
-@app.callback(invoke_without_command=True)
-def _new():
-    pass
+app.add_typer(new.app, name='new')
 
 
 def run():
