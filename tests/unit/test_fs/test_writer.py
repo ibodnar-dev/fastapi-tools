@@ -1,6 +1,8 @@
 from pathlib import Path
 from unittest.mock import patch, MagicMock, Mock
 
+import pytest
+
 import src.fs.writer as writer_module
 from src.fs.builder import Node
 from src.fs.writer import write_tree, _build_path  # noqa
@@ -37,5 +39,13 @@ class TestBuildPath:
         Path.exists = Mock(return_value=True)
 
         result = _build_path(base_path=self.base_path, node_path=self.node_path)
+
+        assert expected == result
+
+    @pytest.mark.parametrize(['base_path'], [(None,), ('',)])
+    def test_returns_node_path_object_when_base_path_is_none_or_empty_str(self, base_path):
+        expected = Path(self.node_path)
+
+        result = _build_path(base_path=base_path, node_path=self.node_path)
 
         assert expected == result
