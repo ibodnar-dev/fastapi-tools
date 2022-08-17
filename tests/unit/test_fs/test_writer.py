@@ -1,8 +1,9 @@
+from pathlib import Path
 from unittest.mock import patch, MagicMock, Mock
 
 import src.fs.writer as writer_module
 from src.fs.builder import Node
-from src.fs.writer import write_tree
+from src.fs.writer import write_tree, _build_path  # noqa
 
 
 @patch.object(writer_module, 'Path')
@@ -28,4 +29,13 @@ class TestTreeWriter:
 
 
 class TestBuildPath:
-    pass
+    base_path = 'base_path'
+    node_path = 'node_path'
+
+    def test_returns_concatenated_path_object_when_base_path_passed(self):
+        expected = Path(self.base_path) / Path(self.node_path)
+        Path.exists = Mock(return_value=True)
+
+        result = _build_path(base_path=self.base_path, node_path=self.node_path)
+
+        assert expected == result
