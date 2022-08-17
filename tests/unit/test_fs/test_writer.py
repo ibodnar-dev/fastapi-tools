@@ -25,3 +25,7 @@ class TestTreeWriter:
         path_instance_mock.mkdir.assert_called_once()
         path_instance_mock.touch.assert_called_once()
         assert path_mock.call_count == 2
+
+
+class TestBuildPath:
+    pass
