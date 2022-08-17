@@ -5,6 +5,7 @@ import pytest
 
 import src.fs.writer as writer_module
 from src.fs.builder import Node
+from src.fs.exceptions import BasePathDoesNotExist
 from src.fs.writer import write_tree, _build_path  # noqa
 
 
@@ -49,3 +50,11 @@ class TestBuildPath:
         result = _build_path(base_path=base_path, node_path=self.node_path)
 
         assert expected == result
+
+    def test_raises_when_base_path_does_not_exist(self):
+        Path.exists = Mock(return_value=False)
+
+        with pytest.raises(BasePathDoesNotExist) as exc_info:
+            _build_path(base_path=self.base_path, node_path=self.node_path)
+
+        assert self.base_path in str(exc_info.value)
