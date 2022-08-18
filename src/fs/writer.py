@@ -4,9 +4,9 @@ from src.fs.builder import Node
 from src.fs.exceptions import NodeExistsError, BasePathDoesNotExist
 
 
-def write_tree(tree: list[Node]):
+def write_tree(tree: list[Node], base_path: str | None = None):
     for node in tree:
-        path_object = Path(node.path)
+        path_object = _build_path(base_path=base_path, node_path=node.path)
         try:
             if node.is_directory:
                 path_object.mkdir()
