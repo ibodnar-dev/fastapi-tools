@@ -1,7 +1,7 @@
 from unittest.mock import patch, MagicMock, Mock
 
-import src.fs.main as main_module
-from src.fs.main import create_app
+import src.app_creator.main as main_module
+from src.app_creator.main import create_app
 
 
 class TestCreateApp:

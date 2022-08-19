@@ -2,9 +2,9 @@ from pathlib import Path
 
 import pytest
 
-from src.fs.builder import Node
-from src.fs.exceptions import NodeExistsError
-from src.fs.writer import write_tree
+from src.app_creator.builder import Node
+from src.app_creator.exceptions import NodeExistsError
+from src.app_creator.writer import write_tree
 
 
 class TestWriter:

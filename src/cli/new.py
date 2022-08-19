@@ -1,6 +1,6 @@
 from typer import Typer
 
-from src.fs import create_app
+from src.app_creator import create_app
 
 app = Typer()
 

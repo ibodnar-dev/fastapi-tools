@@ -140,4 +140,4 @@ cython_debug/
 
 .idea/
 
-src/fs/testing.py
+src/app_creator/testing.py

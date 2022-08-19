@@ -2,7 +2,7 @@ from collections import namedtuple
 
 import pytest
 
-from src.fs.builder import Node
+from src.app_creator.builder import Node
 
 examples_result = namedtuple('examples_result', ['blueprint', 'tree'])
 

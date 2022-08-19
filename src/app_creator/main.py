@@ -1,6 +1,6 @@
-from src.fs.blueprints import app_blueprint
-from src.fs.builder import build_tree
-from src.fs.writer import write_tree
+from src.app_creator.blueprints import app_blueprint
+from src.app_creator.builder import build_tree
+from src.app_creator.writer import write_tree
 
 
 def create_app(app_name: str, base_path: str | None = None) -> None:

@@ -1,4 +1,4 @@
-from src.fs.blueprints import app_blueprint, INIT
+from src.app_creator.blueprints import app_blueprint, INIT
 
 
 class TestAppBlueprint:

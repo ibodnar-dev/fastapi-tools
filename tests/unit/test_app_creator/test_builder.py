@@ -2,7 +2,7 @@ from unittest.mock import Mock
 
 import pytest
 
-from src.fs.builder import Node, build_tree
+from src.app_creator.builder import Node, build_tree
 
 
 class TestNode:

@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from src.fs.builder import Node
-from src.fs.exceptions import NodeExistsError, BasePathDoesNotExist
+from src.app_creator.builder import Node
+from src.app_creator.exceptions import NodeExistsError, BasePathDoesNotExist
 
 
 def write_tree(tree: list[Node], base_path: str | None = None):

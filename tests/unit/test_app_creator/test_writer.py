@@ -3,10 +3,10 @@ from unittest.mock import patch, MagicMock, Mock
 
 import pytest
 
-import src.fs.writer as writer_module
-from src.fs.builder import Node
-from src.fs.exceptions import BasePathDoesNotExist
-from src.fs.writer import write_tree, _build_path  # noqa
+import src.app_creator.writer as writer_module
+from src.app_creator.builder import Node
+from src.app_creator.exceptions import BasePathDoesNotExist
+from src.app_creator.writer import write_tree, _build_path  # noqa
 
 
 @patch.object(writer_module, 'Path')

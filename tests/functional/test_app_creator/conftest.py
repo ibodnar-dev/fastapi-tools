@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from src.fs.builder import Node
+from src.app_creator.builder import Node
 
 
 @pytest.fixture
