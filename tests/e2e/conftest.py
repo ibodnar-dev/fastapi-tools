@@ -4,10 +4,10 @@ import pytest
 
 
 @pytest.fixture(scope='session')
-def testing_directory(tmp_path_factory) -> Path:
+def session_directory(tmp_path_factory) -> Path:
     """
     Returns a temporary session-scoped directory
-    to share among all the tests in the session,
+    to share among all the tests in the session
     in order to test name collisions and such.
     """
-    return tmp_path_factory.mktemp('testing_directory')
+    return tmp_path_factory.mktemp('session_directory')
