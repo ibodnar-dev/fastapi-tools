@@ -6,5 +6,5 @@ app = Typer()
 
 
 @app.command('app')
-def _create_app(app_name: str):
-    create_app(app_name)
+def _create_app(app_name: str, where: str | None = None):
+    create_app(app_name, base_path=where)
