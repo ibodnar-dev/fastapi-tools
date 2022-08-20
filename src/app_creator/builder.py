@@ -37,31 +37,44 @@ class Node:
         return hash(self.path)
 
 
-_nodes: list[Node] = []
-_current_parent: Node | None = None
-
-
-def _build_tree(blueprint: dict) -> list[Node]:
+class _TreeBuilder:
     """
-    Creates a Node from every dict inside the blueprint.
-
-    :param blueprint: dict representation of the file tree
-    to build.
+    The rationale for creating a callable type is that
+    we must keep _nodes and _current_parent outside the scope
+    of the callable, since it's recursive, and creating global
+    variables provokes issues if this is a simple function because
+    they remain with the same values when the function is run multiple times.
+    This solution keeps the variables outside the callable's scope but in
+    a local namespace.
     """
-    global _current_parent
+    def __init__(self):
+        self._nodes: list[Node] = []
+        self._current_parent: Node | None = None
 
-    for name, children in blueprint.items():
-        current = Node(name=name, parent=_current_parent, is_directory=True)
-        _nodes.append(current)
-        _current_parent = current
-        for child in children:
-            if isinstance(child, dict):
-                _build_tree(child)
-            else:
-                _nodes.append(Node(name=child, parent=_current_parent))
+    def __call__(self, blueprint: dict) -> list[Node]:
+        """
+        Recursive method that creates a Node from every dict
+        in the blueprint.
 
-    return _nodes
+        :param blueprint: dict representation of the file tree
+        to build.
+        """
+        for name, children in blueprint.items():
+            current = Node(name=name, parent=self._current_parent, is_directory=True)
+            self._nodes.append(current)
+            self._current_parent = current
+            for child in children:
+                if isinstance(child, dict):
+                    self(child)
+                else:
+                    self._nodes.append(Node(name=child, parent=self._current_parent))
+
+        return self._nodes
 
 
 def build_tree(blueprint: dict) -> list[Node]:
-    return _build_tree(blueprint)
+    """
+    Module's public interface.
+    """
+    tb = _TreeBuilder()
+    return tb(blueprint)
