@@ -3,7 +3,7 @@ import os
 from typer.testing import CliRunner
 
 from src.app_creator.exceptions import NodeExistsError
-from cli.main import app
+from src.cli.main import app
 
 
 runner = CliRunner()
